@@ -1,0 +1,16 @@
+FROM nginx:1.21
+LABEL author="Carl Mai"
+
+EXPOSE 9000
+
+ENV SERVERNAME=localhost
+ENV SERVERDIR=/var/www/localhost
+ENV TYPE=yii
+
+WORKDIR /
+COPY nginx/entrypoint.sh .
+COPY nginx/yii.conf .
+# TODO: wordpress
+# TODO: static site
+
+CMD ["./entrypoint.sh"]
