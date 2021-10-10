@@ -52,3 +52,14 @@ Afterwards run `source env.sh` and you have the command `dlamp` in place for `do
 * [ ] script to backup
 	* db: create a dump
 	* all other, just rsync the `./data` directory
+* [ ] integration test
+	* source env.sh
+	* dlamp up -d
+	* curl ...
+	* dlamp down
+
+## Related Work
+
+- https://github.com/sprintcube/docker-compose-lamp - single environment
+- https://github.com/cytopia/devilbox - maybe exactly the same
+- https://github.com/lando/lando - maybe exactly the same
