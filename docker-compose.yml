@@ -13,6 +13,8 @@ services:
     db:
         image: mariadb:10.5
         restart: unless-stopped
+        environment:
+            - MYSQL_ROOT_PASSWORD: ${DB_PW:-changeme}
         networks:
             - db-network
         volumes:
