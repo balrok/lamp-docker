@@ -1,25 +1,20 @@
-  name: Lint
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
+name: Lint
+on: [push]
 jobs:
-  run-linters:
-    name: Run linters
+  lint:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          - yml
-          - docker
-          - markdown
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: lint
+      uses: luke142367/Docker-Lint-Action@v1.0.0
+      with:
+        target: ./docker/Dockerfile.nginx
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: lint
+      uses: luke142367/Docker-Lint-Action@v1.0.0
+      with:
+        target: ./docker/Dockerfile.php
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
