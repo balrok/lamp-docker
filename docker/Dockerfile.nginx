@@ -1,7 +1,7 @@
 FROM nginx:1.21
 LABEL author="Carl Mai"
 
-EXPOSE 9000
+EXPOSE 80
 
 ENV SERVERNAME=localhost
 ENV SERVERDIR=/var/www/localhost
