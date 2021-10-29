@@ -63,6 +63,9 @@ Goals:
   * curl ...
   * dlamp down
 * [ ] autocomplete for dlamp
+* [ ] better "howto" section - maybe script-assisted
+    - create_new_site:
+      - creates index.php and adds new docker-compose.yml for this site
 
 ## Related Work
 
