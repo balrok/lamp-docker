@@ -52,11 +52,10 @@ Goals:
 
 * [ ] !!! integrate with traefik v2
   * high priority, but not a blocker
-* [ ] !! script to create user and db
-  * blocker
+* [x] !! script to create user and db
 * [x] ! script to apply db backup
 * [ ] script to backup
-  * db: create a dump
+  * [x] db: create a dump
   * all other, just rsync the `./data` directory
 * [ ] integration test
   * source env.sh

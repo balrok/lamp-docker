@@ -21,8 +21,8 @@ services:
       - ./data/db:/var/lib/mysql
         #- ./dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
 
-    networks:
-      db-network:
-        driver: bridge
-    php-network:
-      driver: bridge
+networks:
+  db-network:
+    driver: bridge
+  php-network:
+    driver: bridge
