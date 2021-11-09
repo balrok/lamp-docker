@@ -14,5 +14,6 @@ RUN apt-get update &&\
 RUN sed -i 's/^listen.*/listen = 9000/' /etc/php/7.3/fpm/pool.d/www.conf && \
         mkdir -p /run/php
 
+WORKDIR /var/www/
 
 CMD [ "php-fpm7.3", "-F" ]
