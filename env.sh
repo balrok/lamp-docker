@@ -48,6 +48,7 @@ cat <<-EOT
 	  E.g. 'echo "select 1;" |  dmysqlp' or 'dmysqlp < backup.sql'"
 	  or 'echo "select 1;" |  dmysqlp my_db'"
 EOT
+#shellcheck disable=SC2120
 dmysqlp() {
 	dlamp exec -T db mysql -uroot -p"$(_getMysqlRootPw)" "$1" < /dev/stdin
 }
@@ -96,6 +97,7 @@ _getMysqlRootPw() {
 	)
 }
 
+#shellcheck disable=SC1091
 source "$SCRIPT_DIR/utils/complete_alias"
 complete -F _complete_alias dlamp
 
