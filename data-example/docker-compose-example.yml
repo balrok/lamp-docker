@@ -5,10 +5,6 @@ services:
     volumes:
       - ./data/myexample:/var/www/myexample.localhost
 
-  db:
-    environment:
-      MYSQL_ROOT_PASSWORD: myexamplepassword
-
   web_example:
     image: balrok_nginx
     restart: unless-stopped
@@ -22,12 +18,3 @@ services:
       - "8080:80"
     networks:
       - php-network
-
-  #adminer:
-  #  image: adminer
-  #  restart: unless-stopped
-  #  networks:
-  #    - db-network
-  #  ports:
-  #    # important - this should not be public
-  #    - 127.0.0.1:8081:8080

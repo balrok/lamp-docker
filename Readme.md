@@ -16,8 +16,8 @@ Goals:
 
 ## HowTo
 
-* Copy `./docker-compose-example.yml` to `./data/docker-compose-mysite.yml` and edit the file to your needs.
-  * Whenever you add another webpage, you just copy the example.
+* Copy `data-example` to `./data/` and edit the file to your needs.
+  * Whenever you add another webpage, you create a new docker-compose
 * Copy `env.example` to `.env` and adjust the values there
 * Afterwards run `source env.sh` and you have the command `dlamp` in place for `docker-compose`.
   * now you can run, e.g., `dlamp up -d`
@@ -29,10 +29,6 @@ Goals:
 
 * MariaDb
 * instantiate it **once**, because it requires a lot of ram
-* [ ] TODO: isolate each project to one database with one user
-  * **current state** just the root-user - extra databases have to be created manually
-  * [ ] script/env-variable for db,user,password
-* [ ] TODO: simple way to import - probably exists already
 
 ### PHP
 
@@ -50,19 +46,11 @@ Goals:
 
 ### TODO
 
-* [ ] !!! integrate with traefik v2
-  * high priority, but not a blocker
-* [x] !! script to create user and db
-* [x] ! script to apply db backup
-* [ ] script to backup
-  * [x] db: create a dump
-  * all other, just rsync the `./data` directory
 * [ ] integration test
   * source env.sh
   * dlamp up -d
   * curl ...
   * dlamp down
-* [ ] autocomplete for dlamp
 * [ ] better "howto" section - maybe script-assisted
     - create_new_site:
       - creates index.php and adds new docker-compose.yml for this site
