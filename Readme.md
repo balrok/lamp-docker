@@ -54,6 +54,14 @@ Goals:
 * [ ] better "howto" section - maybe script-assisted
     - create_new_site:
       - creates index.php and adds new docker-compose.yml for this site
+* [ ] utilties
+  * [x] mysql backup - maybe use https://github.com/fradelg/docker-mysql-cron-backup
+  * [ ] periodic webscraper-backup
+* [ ] bundle my infrastructure
+  * [ ] traefik
+  * [ ] watchtower
+  * [ ] example webpage - with the copying script
+
 
 ## Related Work
 

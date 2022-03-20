@@ -1,26 +1,28 @@
-FROM debian:buster-slim
+FROM php:7.4-fpm-buster
 LABEL author="Carl Mai"
 
-EXPOSE 9000
-
-RUN apt-get update &&\
-        apt-get install -y --no-install-recommends\
-        php7.3-fpm \
-        php7.3-bcmath php7.3-curl php7.3-gd \
-        php7.3-json php7.3-mbstring php7.3-mysql \
-        php7.3-opcache php7.3-phpdbg php7.3-readline php7.3-xml php7.3-zip \
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
         ca-certificates \
-        msmtp mailutils && \
-        rm -rf /var/lib/apt/lists/*
+        msmtp mailutils \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN apt-get install -y libcurl4-openssl-dev
+RUN apt-get install -y libonig-dev
+RUN docker-php-ext-install -j$(nproc) gd bcmath curl
+RUN docker-php-ext-install -j$(nproc) mbstring
+RUN apt-get install -y libzip-dev
+RUN docker-php-ext-install -j$(nproc) zip
+RUN apt-get install -y libxml2-dev
+RUN docker-php-ext-install -j$(nproc) xml
+RUN docker-php-ext-install -j$(nproc) json
+RUN docker-php-ext-install -j$(nproc) opcache
 
+COPY php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY ./msmtprc /etc/msmtprc
-RUN echo "sendmail_path=/usr/bin/msmtp -t" >> /etc/php/7.3/fpm/php.ini
-#RUN echo "localhost localhost.localdomain" >> /etc/hosts
+RUN echo "sendmail_path=/usr/bin/msmtp -t" >> $PHP_INI_DIR/php.ini
 
-RUN sed -i 's/^listen.*/listen = 9000/' /etc/php/7.3/fpm/pool.d/www.conf && \
-        mkdir -p /run/php
-
-WORKDIR /var/www/
-
-CMD [ "php-fpm7.3", "-F" ]
+CMD [ "php-fpm", "-F" ]

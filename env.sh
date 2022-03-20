@@ -74,10 +74,12 @@ dmysql_create() {
 		Password: $PW
 	EOT
 	dmysqlp <<-EOT
+		USE mysql;
+		DROP USER IF EXISTS '$1'@'localhost';
 		CREATE DATABASE IF NOT EXISTS $1 CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-		CREATE USER IF NOT EXISTS '$1'@'localhost' IDENTIFIED BY '$PW';
-		ALTER USER '$1'@'localhost' IDENTIFIED BY '$PW';
-		GRANT ALL PRIVILEGES ON $1.* TO '$1'@'localhost';
+		CREATE USER IF NOT EXISTS '$1'@'%' IDENTIFIED BY '$PW';
+		ALTER USER '$1'@'%' IDENTIFIED BY '$PW';
+		GRANT ALL PRIVILEGES ON $1.* TO '$1'@'%';
 		FLUSH PRIVILEGES;
 	EOT
 }
