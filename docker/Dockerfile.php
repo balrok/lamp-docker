@@ -18,6 +18,7 @@ RUN apt-get install -y libxml2-dev
 RUN docker-php-ext-install -j$(nproc) xml
 RUN docker-php-ext-install -j$(nproc) json
 RUN docker-php-ext-install -j$(nproc) opcache
+RUN docker-php-ext-install -j$(nproc) pdo pdo_mysql
 
 COPY php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
